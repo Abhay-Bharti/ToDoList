@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import ToDoScreen from "./screens/ToDoScreen";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AddTask from "./components/AddTask";
+import { TaskProvider } from "./components/context/TaskContext";
 
-function App() {
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <ToDoScreen />,
+  },
+  {
+    path: "/add-task",
+    element: <AddTask />,
+  }
+]);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <TaskProvider>
+      <RouterProvider router={router} />
+    </TaskProvider>
+  )
 }
 
 export default App;
